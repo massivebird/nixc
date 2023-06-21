@@ -22,11 +22,11 @@
   in
   {
     nixosConfigurations = {
+      # hp laptop
       ray = lib.nixosSystem {
         inherit system;
-
         modules = [
-          ./system/configuration.nix
+          ./hosts/ray
         ];
       };
     };
