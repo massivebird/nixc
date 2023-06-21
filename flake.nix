@@ -9,22 +9,20 @@
     };
   };
 
-  outputs = { home-manager, nixpkgs, ... }:
+  outputs = inputs:
   let
+    userName = "penguino";
     system = "x86_64-linux";
-
-    pkgs = import nixpkgs {
-      inherit system;
-      config = { allowUnfree = true; };
-    };
-
-    lib = nixpkgs.lib;
   in
   {
     nixosConfigurations = {
       # hp laptop
-      ray = lib.nixosSystem {
+      ray = inputs.nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = {
+          inherit inputs userName;
+          hostName = "ray";
+        };
         modules = [
           ./hosts/ray
         ];

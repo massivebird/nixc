@@ -1,10 +1,10 @@
 # configuration applied to all hosts
-{ pkgs, lib, config, inputs, ... }: {
+{ pkgs, lib, config, inputs, userName, hostName, ... }: {
   config = {
 
     users.mutableUsers = true;
 
-    users.users.penguino = {
+    users.users.${userName} = {
       isNormalUser = true;
       extraGroups = [ "networkmanager" "wheel" ];
     # description = "his whole body is a weapon";
